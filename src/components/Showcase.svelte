@@ -24,7 +24,7 @@
     }*/
 
     .showcase {
-        color: black;
+        color: #333;
         text-align: center;
         padding: 10em 0;
     }
@@ -37,7 +37,6 @@
     }
 
     .showcase-message {
-        /*align-self: flex-start;*/
         font-family: "Numans", sans-serif;
         font-size: large;
     }

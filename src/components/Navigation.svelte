@@ -1,5 +1,5 @@
 <script>
-    import { Link } from "svelte-routing";
+    export let toggleNewTicketModal;
 </script>
 
 <style>
@@ -13,10 +13,10 @@
         position: absolute;
         width: 100%;
     }
-
-    .nav-link {
-        padding: 0.3em;
-    }
 </style>
 
-<nav class="navigation"><i class="material-icons nav-link">add</i></nav>
+<nav class="navigation">
+    <i
+        on:click={toggleNewTicketModal}
+        class="material-icons icon-button">add</i>
+</nav>

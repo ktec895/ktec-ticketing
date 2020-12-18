@@ -1,91 +1,71 @@
 <script>
-  import { navigate } from 'svelte-routing'
-
-  let summary = ''
-  let description = ''
-  let category = 'DJ'
-
-  const postTicket = async () => {
-    try {
-      const body = { summary, description, category }
-
-      const res = await fetch('/api/ticket', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      })
-
-      if (res.status === 201) navigate('/')
-      else throw new Error(`invalid status code: ${res.status}`)
-    } catch (err) {
-      console.warn(`Error creating ticket: ${err}`)
-    }
-  }
-
-  $: canSave = !!summary && !!description
+  export let toggleNewTicketModal;
 </script>
 
 <style>
-  #fields {
-    width: 80%;
-    margin: 2em auto;
+  .navigation {
     display: flex;
-    flex-direction: column;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    background-color: white;
-    padding: 2em;
+    justify-content: flex-end;
   }
 
-  #fields-title {
-    text-align: center;
-  }
-
-  .field-row {
+  .input-container {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
   }
 
-  .field-column {
+  .input-container label {
+    flex: 1;
+  }
+  .input-container input,
+  .input-container select,
+  .input-container textarea {
+    flex: 3;
+    padding: 5px;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+  }
+
+  .input-container > * {
+    margin: 0.5em;
+  }
+
+  .button-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
   }
-
-  .field-item {
-    margin-bottom: 1em;
+  @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
+    .input-container {
+      flex-direction: column;
+    }
   }
 </style>
 
-<div id="fields">
-  <h1 id="fields-title">New Ticket</h1>
-  <div class="field-column field-item">
-    <label for="summary">Summary</label>
-    <input bind:value={summary} type="text" name="summary" />
-  </div>
-  <div class="field-column field-item">
-    <label for="description">Description</label>
-    <textarea rows="8" bind:value={description} name="description" />
-  </div>
-  <div class="field-row field-item">
-    <label style="flex-grow: 1" for="category">Category</label>
-    <select
-      style="margin: 0; flex-grow: 2"
-      bind:value={category}
-      name="category">
-      <option value="DJ">DJ Equipment</option>
-      <option value="BROADCAST">Broadcasting</option>
-      <option value="STREAM">Live Stream</option>
-      <option value="WEBSITE">Website</option>
-      <option value="OTHER">Other</option>
-    </select>
-  </div>
-  <div class="field-item">
-    {#if canSave}
-      <button
-        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-        on:click={postTicket}>Save</button>
-    {:else}<button class="mdl-button mdl-js-button" disabled>Save</button>{/if}
-    <button
-      class="mdl-button mdl-js-button mdl-button--raised"
-      on:click={() => navigate('/')}>Cancel</button>
+<div class="modal">
+  <div class="modal-content">
+    <div class="navigation">
+      <i
+        on:click={toggleNewTicketModal}
+        class="material-icons icon-button">clear</i>
+    </div>
+    <h1>New Ticket</h1>
+    <div class="input-container">
+      <label for="summary">Summary</label>
+      <input type="text" name="summary" maxlength="100" />
+    </div>
+    <div class="input-container">
+      <label for="category">Category</label>
+      <select name="category">
+        <option value="DJ">DJ Equipment</option>
+        <option value="BROADCAST">Broadcasting</option>
+        <option value="STREAM">Live Stream</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+    <div class="input-container">
+      <label for="description">Description </label>
+      <textarea name="description" rows={10} />
+    </div>
+    <div class="button-container"><button>SUBMIT</button></div>
   </div>
 </div>

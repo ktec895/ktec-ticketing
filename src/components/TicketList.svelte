@@ -1,5 +1,7 @@
 <script>
     export let tickets = [];
+    export let toggleTicketDetailsModal;
+    export let setTicket;
 </script>
 
 <style>
@@ -9,9 +11,16 @@
         margin: 1em 0;
     }
 
-    tr:hover {
-        background-color: #444;
+    tr {
+        transition: background-color 0.5s;
     }
+
+    tr:hover,
+    tr:nth-of-type(odd):hover {
+        background: #ddd;
+        cursor: pointer;
+    }
+
     tr:nth-of-type(odd) {
         background: #eee;
     }
@@ -78,12 +87,16 @@
             <tr class="table-head">
                 <th>Summary</th>
                 <th>Category</th>
-                <th>Time</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
             {#each tickets as ticket}
-                <tr>
+                <tr
+                    on:click={function () {
+                        setTicket(ticket);
+                        toggleTicketDetailsModal();
+                    }}>
                     <td>{ticket.summary}</td>
                     <td>{ticket.category}</td>
                     <td>{ticket.timestamp.toLocaleDateString()}</td>
