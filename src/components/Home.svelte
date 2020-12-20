@@ -3,6 +3,7 @@
   import TicketList from "./TicketList.svelte";
   import NewTicket from "./NewTicket.svelte";
   import Ticket from "./Ticket.svelte";
+  import Navigation from "./Navigation.svelte";
   export let showNewTicketModal;
   export let showTicketDetailsModal;
   export let toggleNewTicketModal;
@@ -45,10 +46,14 @@
 
 <!-- Main page items -->
 <Showcase />
-<h2>Open Tickets</h2>
-<TicketList tickets={openTickets} {setTicket} {toggleTicketDetailsModal} />
-<h2>Closed Tickets</h2>
-<TicketList tickets={closedTickets} {setTicket} {toggleTicketDetailsModal} />
+<div class="container card">
+  <h2>Open Tickets</h2>
+  <TicketList tickets={openTickets} {setTicket} {toggleTicketDetailsModal} />
+</div>
+<div class="container card">
+  <h2>Closed Tickets</h2>
+  <TicketList tickets={closedTickets} {setTicket} {toggleTicketDetailsModal} />
+</div>
 
 <!-- Modals -->
 {#if showNewTicketModal}

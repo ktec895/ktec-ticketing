@@ -16,19 +16,23 @@
     }
 
     tr:hover,
-    tr:nth-of-type(odd):hover {
-        background: #ddd;
+    tr:nth-child(odd):hover,
+    tr:nth-child(even):hover {
+        background: #bbb;
         cursor: pointer;
     }
 
-    tr:nth-of-type(odd) {
-        background: #eee;
+    tr:nth-child(even) {
+        background: rgba(0, 0, 0, 0);
+    }
+    tr:nth-child(odd) {
+        background: rgba(255, 255, 255, 0.5);
     }
 
     th {
-        background: #333;
+        background: #000069;
         color: white;
-        font-weight: bold;
+        font-weight: 700;
     }
 
     td,
@@ -81,7 +85,7 @@
     }
 </style>
 
-<div class="container">
+<div>
     <table>
         <thead>
             <tr class="table-head">

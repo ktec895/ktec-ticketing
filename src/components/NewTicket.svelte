@@ -3,6 +3,12 @@
 </script>
 
 <style>
+  label {
+    font-family: proxima-nova, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
   .navigation {
     display: flex;
     justify-content: flex-end;
@@ -48,7 +54,7 @@
         on:click={toggleNewTicketModal}
         class="material-icons icon-button">clear</i>
     </div>
-    <h1>New Ticket</h1>
+    <h1 class="centered">New Ticket</h1>
     <div class="input-container">
       <label for="summary">Summary</label>
       <input type="text" name="summary" maxlength="100" />
