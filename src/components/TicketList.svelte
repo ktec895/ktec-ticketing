@@ -9,6 +9,9 @@
         width: 100%;
         border-collapse: collapse;
         margin: 1em 0;
+        border-radius: 1em;
+        overflow: hidden;
+        color: black;
     }
 
     tr {
@@ -18,27 +21,42 @@
     tr:hover,
     tr:nth-child(odd):hover,
     tr:nth-child(even):hover {
-        background: #bbb;
+        background: #ccc;
         cursor: pointer;
     }
 
     tr:nth-child(even) {
-        background: rgba(0, 0, 0, 0);
+        background: white;
     }
     tr:nth-child(odd) {
-        background: rgba(255, 255, 255, 0.5);
+        background: white;
     }
 
     th {
-        background: #000069;
+        background: black;
+        padding: 0.5em;
         color: white;
         font-weight: 700;
+        padding: 1em;
+        text-align: left;
+    }
+    th:nth-child(1) {
+        padding-left: 2em;
+    }
+    th:last-child {
+        padding-right: 2em;
     }
 
-    td,
-    th {
-        padding: 6px;
+    td {
+        padding: 0.75em;
+        padding-left: 1em;
         text-align: left;
+    }
+    td:nth-child(1) {
+        padding-left: 2em;
+    }
+    td:last-child {
+        padding-right: 2em;
     }
 
     @media only screen and (max-width: 760px),

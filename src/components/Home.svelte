@@ -46,11 +46,11 @@
 
 <!-- Main page items -->
 <Showcase />
-<div class="container card">
+<div class="container">
   <h2>Open Tickets</h2>
   <TicketList tickets={openTickets} {setTicket} {toggleTicketDetailsModal} />
 </div>
-<div class="container card">
+<div class="container">
   <h2>Closed Tickets</h2>
   <TicketList tickets={closedTickets} {setTicket} {toggleTicketDetailsModal} />
 </div>
