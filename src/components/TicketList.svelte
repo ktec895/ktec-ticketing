@@ -16,23 +16,16 @@
 
     tr {
         transition: background-color 0.5s;
-        /*border-bottom: 1px solid #ccc;*/ /* SEE IF YOU LIKE THIS TRISTEN */
     }
 
-    tr:hover,
-    tr:nth-child(odd):hover,
-    tr:nth-child(even):hover {
+    tr:hover {
         background: #ccc;
         cursor: pointer;
     }
 
-    tr:nth-child(even) {
+    tr {
         background: white;
     }
-    tr:nth-child(odd) {
-        background: white;
-    }
-
     th {
         background: black;
         padding: 0.5em;
@@ -52,12 +45,6 @@
         padding: 0.75em;
         padding-left: 1em;
         text-align: left;
-    }
-    td:nth-child(1) {
-        padding-left: 2em;
-    }
-    td:last-child {
-        padding-right: 2em;
     }
 
     @media only screen and (max-width: 760px),
@@ -81,6 +68,14 @@
             border: none;
             position: relative;
             padding-left: 50%;
+        }
+
+        tr {
+            border-bottom: 1px solid #ccc; /* SEE IF YOU LIKE THIS TRISTEN */
+        }
+
+        tr:last-child {
+            border: none;
         }
 
         td:before {

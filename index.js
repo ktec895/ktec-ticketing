@@ -18,7 +18,7 @@ mongoose.connection.on('connected', () => console.log('mongodb connected'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 
-app.use('/api/ticket', api)
+app.use('/api/tickets', api)
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 )

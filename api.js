@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Ticket = require('./models/Ticket')
+const Update = require('./models/Update')
 
 router.post('/', async (req, res) => {
   try {
@@ -21,21 +22,6 @@ router.post('/', async (req, res) => {
     res.status(201).json(newTicket)
   } catch (err) {
     console.log(err)
-    res.status(400).json({ message: err.message })
-  }
-})
-
-router.put('/:id/status', async (req, res) => {
-  try {
-    const { status } = req.body
-    const { id } = req.params
-
-    if (!status) throw new Error('Missing required attribute')
-
-    await Ticket.updateOne({ _id: id }, { status }, { runValidators: true })
-
-    res.sendStatus(200)
-  } catch (err) {
     res.status(400).json({ message: err.message })
   }
 })
@@ -76,6 +62,18 @@ router.get('/:id', async (req, res) => {
     const ticket = await Ticket.findById(id)
 
     res.status(200).json(ticket)
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
+
+router.get('/:id/updates', async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const docs = await Update.find({ ticketId: id })
+
+    res.status(200).json(docs)
   } catch (err) {
     res.status(400).json({ message: err.message })
   }
