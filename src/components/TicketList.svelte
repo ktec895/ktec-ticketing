@@ -16,6 +16,7 @@
 
     tr {
         transition: background-color 0.5s;
+        /*border-bottom: 1px solid #ccc;*/ /* SEE IF YOU LIKE THIS TRISTEN */
     }
 
     tr:hover,
