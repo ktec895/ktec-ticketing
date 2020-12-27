@@ -98,8 +98,12 @@ p.italic {
 
 .container {
   width: 85%;
-  margin: 0 auto;
+  margin: 1em auto;
   max-width: 65em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
@@ -145,18 +149,22 @@ p.italic {
   margin: 0.5em;
 }
 
-.icon-button:hover,
-.icon-button:focus {
-  background-color: #ccc;
-}
-
 button {
   border: none;
   border-radius: 30px;
+  cursor: pointer;
   color: black;
   background: white;
   font-family: proxima-nova, sans-serif;
   font-weight: 400;
   padding: 0.7em 2em;
   font-size: 1em;
+  transition: background-color 0.25s;
+}
+
+button:hover,
+button:focus,
+.icon-button:hover,
+.icon-button:focus {
+  background-color: #ccc;
 }

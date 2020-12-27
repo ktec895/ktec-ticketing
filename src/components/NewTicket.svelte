@@ -1,5 +1,27 @@
 <script>
   export let toggleNewTicketModal;
+
+  let summary = "";
+  let category = "DJ";
+  let description = "";
+
+  $: canSubmit = summary != "" && description != "";
+
+  const submitTicket = async () => {
+    const response = await fetch("/api/tickets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ summary, category, description }),
+    });
+
+    if (response.status === 201) {
+      summary = "";
+      category = "DJ";
+      description = "";
+    }
+  };
 </script>
 
 <style>
@@ -57,11 +79,11 @@
     <h1 class="centered">New Ticket</h1>
     <div class="input-container">
       <label for="summary">Summary</label>
-      <input type="text" name="summary" maxlength="100" />
+      <input type="text" name="summary" maxlength="100" bind:value={summary} />
     </div>
     <div class="input-container">
       <label for="category">Category</label>
-      <select name="category">
+      <select name="category" bind:value={category}>
         <option value="DJ">DJ Equipment</option>
         <option value="BROADCAST">Broadcasting</option>
         <option value="STREAM">Live Stream</option>
@@ -70,8 +92,12 @@
     </div>
     <div class="input-container">
       <label for="description">Description </label>
-      <textarea name="description" rows={10} />
+      <textarea name="description" rows={10} bind:value={description} />
     </div>
-    <div class="button-container"><button>SUBMIT</button></div>
+    {#if canSubmit}
+      <div class="button-container">
+        <button on:click={submitTicket}>Submit</button>
+      </div>
+    {/if}
   </div>
 </div>

@@ -49,10 +49,12 @@
 <div class="container">
   <h2>Open Tickets</h2>
   <TicketList tickets={openTickets} {setTicket} {toggleTicketDetailsModal} />
+  <button>Load More</button>
 </div>
 <div class="container">
   <h2>Closed Tickets</h2>
   <TicketList tickets={closedTickets} {setTicket} {toggleTicketDetailsModal} />
+  <button>Load More</button>
 </div>
 
 <!-- Modals -->

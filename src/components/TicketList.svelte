@@ -5,6 +5,10 @@
 </script>
 
 <style>
+    .ticket-list {
+        width: 100%;
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
@@ -99,7 +103,7 @@
     }
 </style>
 
-<div>
+<div class="ticket-list">
     <table>
         <thead>
             <tr class="table-head">
